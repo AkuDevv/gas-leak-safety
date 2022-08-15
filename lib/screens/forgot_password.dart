@@ -21,7 +21,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Reset Password"),
+        title: const Text("Reinitialiser le mot de passe",style: TextStyle(
+          fontFamily: 'Sfpro'
+        ),),
         centerTitle: true,
       ),
       body: Padding(
@@ -35,73 +37,81 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               SizedBox(
                 width: 120,
                 height: 120,
-                child: Image.asset("assets/images/logo.png"),
+                child: Image.asset("assets/images/logo_gas.png"),
               ),
 
-              const Text(
-                "Enter the email address associated with your account",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold
+              const Center(
+                child: Text(
+                  "Entrez votre adresse email!",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.cyanAccent,
+                    fontFamily: 'Sfpro',
+                    fontWeight: FontWeight.bold
+                  ),
                 ),
               ),
 
               const SizedBox(height: 20,),
         
               TextFormField(
-                validator: (email) => email != null && !EmailValidator.validate(email) ? "Enter a valid email" : null,
+                validator: (email) => email != null && !EmailValidator.validate(email) ? "Entrez un mail valide!" : null,
                 controller: emailController,
                 textInputAction: TextInputAction.done,
                 style: const TextStyle(
-                  fontSize: 16
+                  fontSize: 16,
+                  fontFamily: 'Sfpro'
                 ),
                 decoration: InputDecoration(
                   labelText: "  Email  ",
                   labelStyle: const TextStyle(
-                    fontSize: 16
+                    fontSize: 16,
+                    fontFamily: 'Sfpro'
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
                   contentPadding: const EdgeInsets.all(10),
-                  prefixIcon: const Icon(Icons.email)
+                  prefixIcon: const Icon(Icons.email_rounded)
                 ),
               ),
 
-              const SizedBox(height: 20,),
-
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 40,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    if(!_formkey.currentState!.validate()) {
-                      return;
-                    }
-                    if(await AuthService().resetPassword(emailController.text.trim(), context)) {
-                      showDialog(context: context, builder: (context) => AlertDialog(
-                        title: const Text("Reset Password"),
-                        content: const Text(
-                          "Check your email to reset your password and login again!",
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 40,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      if(!_formkey.currentState!.validate()) {
+                        return;
+                      }
+                      if(await AuthService().resetPassword(emailController.text.trim(), context)) {
+                        showDialog(context: context, builder: (context) => AlertDialog(
+                          title: const Text("Reinitialiser"),
+                          content: const Text(
+                            "Veuillez vérifier votre mail!",
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontSize: 16,
+                              fontFamily: 'Sfpro',
+                              fontWeight: FontWeight.bold
+                            ),
                           ),
-                        ),
-                        actions: [
-                          TextButton(onPressed: () {
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
-                          }, child: const Text("Ok"))
-                        ],
-                      ));
-                    }                  
-                  },
-                  child: const Text(
-                    "Send",
-                    style: TextStyle(
-                      fontSize: 20, 
-                      fontWeight: FontWeight.bold
+                          actions: [
+                            TextButton(onPressed: () {
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+                            }, child: const Text("Ok"))
+                          ],
+                        ));
+                      }                  
+                    },
+                    child: const Text(
+                      "Envoyer",
+                      style: TextStyle(
+                        fontSize: 20, 
+                        fontFamily: 'Sfpro',
+                      ),
                     ),
                   ),
                 ),

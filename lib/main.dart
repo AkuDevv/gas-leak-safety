@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gas_leak_safety/screens/signIn.dart';
+import 'package:gas_leak_safety/screens/started.dart';
 import 'package:gas_leak_safety/screens/verify_email.dart';
 import 'firebase_options.dart';
 
@@ -10,9 +11,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: SignInMethodScreen(),
+    home: GettingStarted(),
   ));
 }
 

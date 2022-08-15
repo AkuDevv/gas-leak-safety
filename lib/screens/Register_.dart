@@ -3,12 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:gas_leak_safety/screens/signIn.dart';
 import 'package:gas_leak_safety/screens/verify_email.dart';
 import 'package:gas_leak_safety/services/auth_service.dart';
 
 class FirstLanding extends StatefulWidget {
+  const FirstLanding({Key? key}) : super(key: key);
+
   @override
   _FirstLandingState createState() => _FirstLandingState();
 }
@@ -43,13 +44,13 @@ class _FirstLandingState extends State<FirstLanding> {
 
   Widget _indicator(bool isActive) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 150),
-      margin: EdgeInsets.symmetric(horizontal: 8.0),
+      duration: const Duration(milliseconds: 150),
+      margin: const EdgeInsets.symmetric(horizontal: 8.0),
       height: 8.0,
       width: isActive ? 24.0 : 16.0,
       decoration: BoxDecoration(
-        color: isActive ? Colors.white : Color(0xFF7B51D3),
-        borderRadius: BorderRadius.all(Radius.circular(12)),
+        color: isActive ? Colors.cyanAccent : Colors.grey,
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),
     );
   }
@@ -60,172 +61,188 @@ class _FirstLandingState extends State<FirstLanding> {
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
-        child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: [
-                0.1,
-                0.4,
-                0.7,
-                0.9
-              ],
-                  colors: [
-                Color(0xFF3594DD),
-                Color(0xFF4563DB),
-                Color(0xFF5036D5),
-                Color(0xFF5B16D0),
-              ])),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 40.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Container(
-                  height: 425.0,
-                  child: Form(
-                    key: _formkey,
-                    child: PageView(
-                      physics: ClampingScrollPhysics(),
-                      controller: _pageController,
-                      onPageChanged: (int page) {
-                        setState(() {
-                          _currentPage = page;
-                        });
-                      },
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(40.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Center(
-                                child: SizedBox(
-                                  width: 120,
-                                  height: 120,
-                                  child: Image.asset("assets/images/logo_gas.png"),
-                                ),
-                              ),
-                  
-                              const SizedBox(
-                                height: 10,
-                              ),
-                  
-                              // FIRST NAME TEXT FIELD
-                              TextFormField(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 30.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Center(
+                child: SizedBox(
+                  width: 110,
+                  height: 110,
+                  child: Image.asset("assets/images/logo_gas.png"),
+                ),
+              ),
+              const Center(
+                child: Text(
+                  "Créer votre compte",
+                  style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.cyanAccent,
+                      fontFamily: 'Sfpro',
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Container(
+                height: 350.0,
+                child: Form(
+                  key: _formkey,
+                  child: PageView(
+                    physics: const ClampingScrollPhysics(),
+                    controller: _pageController,
+                    onPageChanged: (int page) {
+                      setState(() {
+                        _currentPage = page;
+                      });
+                    },
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            const SizedBox(
+                              height: 20,
+                            ),
+
+                            // FIRST NAME TEXT FIELD
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: TextFormField(
                                 controller: fnameController,
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.next,
-                                style: const TextStyle(fontSize: 20),
+                                style: const TextStyle(
+                                    fontSize: 15, fontFamily: 'Sfpro'),
                                 decoration: InputDecoration(
-                                    labelText: " First Name ",
-                                    labelStyle: const TextStyle(fontSize: 16),
+                                    labelText: " Prénom ",
+                                    labelStyle: const TextStyle(
+                                        fontSize: 14, fontFamily: 'Sfpro'),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                     contentPadding: const EdgeInsets.all(10)),
                               ),
-                  
-                              const SizedBox(
-                                height: 10,
-                              ),
-                  
-                              // LAST NAME TEXT FIELD
-                              TextFormField(
+                            ),
+
+                            // LAST NAME TEXT FIELD
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: TextFormField(
                                 controller: lnameController,
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.next,
-                                style: const TextStyle(fontSize: 20),
+                                style: const TextStyle(
+                                    fontSize: 15, fontFamily: 'Sfpro'),
                                 decoration: InputDecoration(
-                                    labelText: " Last Name ",
-                                    labelStyle: const TextStyle(fontSize: 16),
+                                    labelText: " Nom ",
+                                    labelStyle: const TextStyle(
+                                        fontSize: 14, fontFamily: 'Sfpro'),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                     contentPadding: const EdgeInsets.all(10)),
                               ),
-                  
-                              TextFormField(
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: TextFormField(
                                 controller: cinController,
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.next,
-                                style: const TextStyle(fontSize: 20),
+                                style: const TextStyle(
+                                    fontSize: 15, fontFamily: 'Sfpro'),
                                 decoration: InputDecoration(
                                     labelText: " CIN ",
-                                    labelStyle: const TextStyle(fontSize: 16),
+                                    labelStyle: const TextStyle(
+                                        fontSize: 14, fontFamily: 'Sfpro'),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                     contentPadding: const EdgeInsets.all(10)),
                               ),
-                  
-                              TextFormField(
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: TextFormField(
                                 controller: telController,
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.next,
-                                style: const TextStyle(fontSize: 20),
+                                style: const TextStyle(
+                                    fontSize: 15, fontFamily: 'Sfpro'),
                                 decoration: InputDecoration(
                                     labelText: " Numéro Téléphone ",
-                                    labelStyle: const TextStyle(fontSize: 16),
+                                    labelStyle: const TextStyle(
+                                        fontSize: 14, fontFamily: 'Sfpro'),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                     contentPadding: const EdgeInsets.all(10)),
                               ),
-                              
-                              TextFormField(
+                            ),
+
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: TextFormField(
                                 controller: adresseController,
                                 keyboardType: TextInputType.text,
                                 textInputAction: TextInputAction.next,
-                                style: const TextStyle(fontSize: 20),
+                                style: const TextStyle(
+                                    fontSize: 15, fontFamily: 'Sfpro'),
                                 decoration: InputDecoration(
                                     labelText: " Adresse Postale ",
-                                    labelStyle: const TextStyle(fontSize: 16),
+                                    labelStyle: const TextStyle(
+                                        fontSize: 14, fontFamily: 'Sfpro'),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                     contentPadding: const EdgeInsets.all(10)),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(40.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              TextFormField(
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(40.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: TextFormField(
                                 validator: (email) =>
                                     !EmailValidator.validate(email!)
-                                        ? "Enter a valid email"
+                                        ? "Entez un email valide!"
                                         : null,
                                 controller: emailController,
                                 keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
-                                style: const TextStyle(fontSize: 20),
+                                style: const TextStyle(
+                                    fontSize: 15, fontFamily: 'Sfpro'),
                                 decoration: InputDecoration(
                                     labelText: " Email ",
                                     prefixIcon: const Icon(Icons.email),
-                                    labelStyle: const TextStyle(fontSize: 16),
+                                    labelStyle: const TextStyle(
+                                        fontSize: 14, fontFamily: 'Sfpro'),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                     contentPadding: const EdgeInsets.all(10)),
                                 autofillHints: const [AutofillHints.email],
                               ),
-                  
-                              const SizedBox(
-                                height: 10,
-                              ),
-                  
-                              // PASSWORD TEXT FIELD
-                              TextFormField(
+                            ),
+
+                            // PASSWORD TEXT FIELD
+                            Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: TextFormField(
                                 validator: (password) {
                                   if (password!.isEmpty) {
-                                    return "Enter a password!";
+                                    return "Entez un mot de passe!";
                                   } else if (password.length < 6) {
-                                    return "At least 6 characters";
+                                    return "6 caractères minimum!";
                                   } else {
                                     return null;
                                   }
@@ -233,11 +250,13 @@ class _FirstLandingState extends State<FirstLanding> {
                                 controller: passwordController,
                                 textInputAction: TextInputAction.next,
                                 obscureText: showPassword,
-                                style: const TextStyle(fontSize: 20),
+                                style: const TextStyle(
+                                    fontSize: 15, fontFamily: 'Sfpro'),
                                 decoration: InputDecoration(
-                                    labelText: " Password ",
+                                    labelText: " Mot de passe ",
                                     prefixIcon: const Icon(Icons.lock),
-                                    labelStyle: const TextStyle(fontSize: 16),
+                                    labelStyle: const TextStyle(
+                                        fontSize: 14, fontFamily: 'Sfpro'),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
@@ -250,27 +269,29 @@ class _FirstLandingState extends State<FirstLanding> {
                                         },
                                         icon: showPassword
                                             ? const Icon(Icons.visibility)
-                                            : const Icon(Icons.visibility_off))),
+                                            : const Icon(
+                                                Icons.visibility_off))),
                               ),
-                  
-                              const SizedBox(
-                                height: 10,
-                              ),
-                  
-                              // CONFIRM PASSWORD TEXT FIELD
-                              TextFormField(
+                            ),
+
+                            // CONFIRM PASSWORD TEXT FIELD
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: TextFormField(
                                 validator: (value) => passwordController.text !=
                                         confirmPasswordController.text
-                                    ? "passwords doesn't match"
+                                    ? "Mot de passe non correcte!"
                                     : null,
                                 controller: confirmPasswordController,
                                 textInputAction: TextInputAction.done,
                                 obscureText: showConfirmPassword,
-                                style: const TextStyle(fontSize: 20),
+                                style: const TextStyle(
+                                    fontSize: 15, fontFamily: 'Sfpro'),
                                 decoration: InputDecoration(
-                                    labelText: " Confirm Password ",
+                                    labelText: " Confirmer le mot de passe ",
                                     prefixIcon: const Icon(Icons.lock),
-                                    labelStyle: const TextStyle(fontSize: 16),
+                                    labelStyle: const TextStyle(
+                                        fontSize: 14, fontFamily: 'Sfpro'),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
@@ -284,19 +305,22 @@ class _FirstLandingState extends State<FirstLanding> {
                                         },
                                         icon: showConfirmPassword
                                             ? const Icon(Icons.visibility)
-                                            : const Icon(Icons.visibility_off))),
+                                            : const Icon(
+                                                Icons.visibility_off))),
                               ),
-                  
-                              const SizedBox(
-                                height: 10,
-                              ),
-                  
-                              // REGISTER BUTTON
-                              loading
-                                  ? const Center(
+                            ),
+
+                            // REGISTER BUTTON
+                            loading
+                                ? const Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Center(
                                       child: CircularProgressIndicator(),
-                                    )
-                                  : SizedBox(
+                                    ),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: SizedBox(
                                       width: MediaQuery.of(context).size.width,
                                       height: 40,
                                       child: ElevatedButton(
@@ -322,6 +346,10 @@ class _FirstLandingState extends State<FirstLanding> {
                                                 'name':
                                                     "${fnameController.text} ${lnameController.text}",
                                                 'email': emailController.text,
+                                                'cin': cinController.text,
+                                                'tel': telController.text,
+                                                'adresse':
+                                                    adresseController.text,
                                                 'photo': "",
                                                 'uid': user.uid,
                                                 'provider': "EMAIL"
@@ -338,19 +366,18 @@ class _FirstLandingState extends State<FirstLanding> {
                                             });
                                           },
                                           child: const Text(
-                                            "Register",
+                                            "S'inscrire",
                                             style: TextStyle(
-                                                fontSize: 25,
-                                                fontWeight: FontWeight.bold),
+                                              fontSize: 20,
+                                              fontFamily: 'Sfpro',
+                                            ),
                                           )),
                                     ),
-                  
-                              const SizedBox(
-                                height: 20,
-                              ),
-                  
-                              // LOGIN BUTTON
-                              TextButton(
+                                  ),
+
+                            // LOGIN BUTTON
+                            Center(
+                              child: TextButton(
                                 onPressed: () {
                                   Navigator.pushReplacement(
                                       context,
@@ -358,62 +385,59 @@ class _FirstLandingState extends State<FirstLanding> {
                                           builder: (context) =>
                                               const SignInMethodScreen()));
                                 },
-                                child: const Text(
-                                    "Already have an account? Login here",
+                                child: const Text("Vous avez déja un compte?",
                                     style: TextStyle(
                                         fontSize: 15,
+                                        color: Colors.cyanAccent,
                                         fontWeight: FontWeight.bold)),
-                              )
-                            ],
-                          ),
-                        ), 
-                      ],
-                    ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: _buildPageIndicator(),
-                ),
-                _currentPage != _numPages - 1
-                    ? Expanded(
-                        child: Align(
-                          alignment: FractionalOffset.bottomRight,
-                          child: FlatButton(
-                            onPressed: () {
-                              _pageController.nextPage(
-                                duration: Duration(microseconds: 500),
-                                curve: Curves.ease,
-                              );
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Text(
-                                  'Next',
-                                  style: TextStyle(
-                                    fontFamily: 'Sfpro',
-                                    color: Colors.white,
-                                    fontSize: 22.0,
-                                  ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: _buildPageIndicator(),
+              ),
+              _currentPage != _numPages - 1
+                  ? Expanded(
+                      child: Align(
+                        alignment: FractionalOffset.bottomRight,
+                        child: TextButton(
+                          onPressed: () {
+                            _pageController.nextPage(
+                              duration: const Duration(microseconds: 500),
+                              curve: Curves.ease,
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Text(
+                                'Suivant',
+                                style: TextStyle(
+                                  fontFamily: 'Sfpro',
+                                  color: Colors.cyanAccent,
+                                  fontSize: 18.0,
                                 ),
-                                SizedBox(
-                                  width: 10.0,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.white,
-                                  size: 30.0,
-                                ),
-                              ],
-                            ),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                color: Colors.cyanAccent,
+                                size: 20.0,
+                              ),
+                            ],
                           ),
                         ),
-                      )
-                    : Text(''),
-              ],
-            ),
+                      ),
+                    )
+                  : Text(''),
+            ],
           ),
         ),
       ),

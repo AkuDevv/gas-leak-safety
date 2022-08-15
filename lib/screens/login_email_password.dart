@@ -1,8 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gas_leak_safety/screens/Register_.dart';
 import 'package:gas_leak_safety/screens/forgot_password.dart';
-import 'package:gas_leak_safety/screens/register.dart';
 import 'package:gas_leak_safety/screens/verify_email.dart';
 import 'package:gas_leak_safety/services/auth_service.dart';
 
@@ -18,9 +18,6 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
 
   bool login = false;
-  bool google = false;
-  bool facebook = false;
-  bool apple = false;
 
   bool showPassword = true;
 
@@ -30,79 +27,70 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 90, 20, 10),
+        padding: const EdgeInsets.fromLTRB(20, 50, 20, 10),
         child: Form(
           key: _formkey,
           child: ListView(
             children: [
               // LOGO
-              SizedBox(
-                width: 120,
-                height: 120,
-                child: Image.asset("assets/images/logo_gas.png"),
-              ),
-
               Padding(
-                padding: const EdgeInsets.only(bottom: 30),
-                child: Center(
-                  child: Text(
-                    "Se Connecter",
-                    style: TextStyle(
-                        fontSize: 25,
-                        color: Theme.of(context).primaryColor,
-                        fontFamily: 'Sfpro',
-                        fontWeight: FontWeight.bold),
-                  ),
+                padding: const EdgeInsets.all(15.0),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.height/2,
+                  height: 150,
+                  child: Image.asset("assets/images/login.png"),
                 ),
               ),
 
               // EMAIL TEXT FIELD
-              TextFormField(
-                validator: (email) => !EmailValidator.validate(email!)
-                    ? "Enter a valid email"
-                    : null,
-                controller: emailController,
-                textInputAction: TextInputAction.next,
-                style: const TextStyle(fontSize: 16,fontFamily: 'Sfpro'),
-                decoration: InputDecoration(
-                    labelText: "  Email  ",
-                    labelStyle: const TextStyle(fontSize: 16,fontFamily: 'Sfpro'),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    contentPadding: const EdgeInsets.all(10),
-                    prefixIcon: const Icon(Icons.email)),
-              ),
-
-              const SizedBox(
-                height: 10,
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: TextFormField(
+                  validator: (email) => !EmailValidator.validate(email!)
+                      ? "Entrez un email valide!"
+                      : null,
+                  controller: emailController,
+                  textInputAction: TextInputAction.next,
+                  style: const TextStyle(fontSize: 16,fontFamily: 'Sfpro'),
+                  decoration: InputDecoration(
+                      labelText: "  Email  ",
+                      labelStyle: const TextStyle(fontSize: 14,fontFamily: 'Sfpro'),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      contentPadding: const EdgeInsets.all(10),
+                      prefixIcon: const Icon(Icons.email)),
+                ),
               ),
 
               // PASSWORD TEXT FIELD
-              TextFormField(
-                validator: (password) =>
-                    password!.isEmpty ? "Enter your password!" : null,
-                textInputAction: TextInputAction.done,
-                controller: passwordController,
-                obscureText: showPassword,
-                style: const TextStyle(fontSize: 16,fontFamily: 'Sfpro'),
-                decoration: InputDecoration(
-                    labelText: "  Password  ",
-                    labelStyle: const TextStyle(fontSize: 16,fontFamily: 'Sfpro'),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    contentPadding: const EdgeInsets.all(0),
-                    prefixIcon: const Icon(Icons.lock),
-                    suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            showPassword = !showPassword;
-                          });
-                        },
-                        icon: showPassword
-                            ? const Icon(Icons.visibility)
-                            : const Icon(Icons.visibility_off))),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: TextFormField(
+                  validator: (password) =>
+                      password!.isEmpty ? "Entez votre mot de passe!" : null,
+                  textInputAction: TextInputAction.done,
+                  controller: passwordController,
+                  obscureText: showPassword,
+                  style: const TextStyle(fontSize: 16,fontFamily: 'Sfpro'),
+                  decoration: InputDecoration(
+                      labelText: "  Mot de passe  ",
+                      labelStyle: const TextStyle(fontSize: 14,fontFamily: 'Sfpro'),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      contentPadding: const EdgeInsets.all(0),
+                      prefixIcon: const Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              showPassword = !showPassword;
+                            });
+                          },
+                          icon: showPassword
+                              ? const Icon(Icons.visibility)
+                              : const Icon(Icons.visibility_off))),
+                ),
               ),
 
               TextButton(
@@ -113,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             builder: (context) =>
                                 const ForgotPasswordScreen()));
                   },
-                  child: const Text("Forgot password?",style: TextStyle(fontFamily: 'Sfpro'),)),
+                  child: const Text("Mot de passe oublié?",style: TextStyle(fontFamily: 'Sfpro'),)),
 
               // FORGOT PASSWORD BUTTON
 
@@ -151,9 +139,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             });
                           },
                           child: const Text(
-                            "Login",
+                            "Se Connecter",
                             style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold,fontFamily: 'Sfpro'),
+                                fontSize: 20,fontFamily: 'Sfpro'),
                           ),
                         ),
                       ),
@@ -165,11 +153,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const RegisterScreen()));
+                            builder: (context) => const FirstLanding()));
                   },
                   child: const Text(
-                    "Don't have an account? Register here !",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold,fontFamily: 'Sfpro'),
+                    "Vous n'avez pas du compte? S'inscrire ici!",
+                    style: TextStyle(fontSize: 15,fontFamily: 'Sfpro'),
                   ))
             ],
           ),
