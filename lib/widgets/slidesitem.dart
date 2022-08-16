@@ -26,9 +26,9 @@ class SlideItem extends StatelessWidget {
         ),
         Text(
           slideList[index].title,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 22,
-            color: Theme.of(context).primaryColor,
+            color: Color(0xff41436a),
             fontFamily: 'Sfpro',
           ),
         ),

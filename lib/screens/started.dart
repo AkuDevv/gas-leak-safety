@@ -33,10 +33,10 @@ class _GettingStartedState extends State<GettingStarted> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 150),
       margin: const EdgeInsets.symmetric(horizontal: 8.0),
-      height: 8.0,
+      height: 2.0,
       width: isActive ? 24.0 : 16.0,
       decoration: BoxDecoration(
-        color: isActive ? Colors.cyanAccent : Colors.grey,
+        color: isActive ? /*Color(0xff326789)*/Color(0xff41436a) : Colors.grey,
         borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),
     );
@@ -76,7 +76,7 @@ class _GettingStartedState extends State<GettingStarted> {
                     onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) =>  const LoginScreen()));},
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5)),
-                    color: Theme.of(context).primaryColor,
+                    color: Color(0xff41436a),
                     textColor: Colors.white,
                     child: const Text(
                       'Rejoinez nous!',
@@ -94,8 +94,8 @@ class _GettingStartedState extends State<GettingStarted> {
                         style: TextStyle(
                             fontSize: 16,
                             fontFamily: 'Sfpro',
-                            color: Theme.of(context).primaryColor),
-                      ),
+                            color: Color(0xff41436a),
+                      ),),
                       FlatButton(
                         onPressed: () {},
                         child: Text(
@@ -103,7 +103,7 @@ class _GettingStartedState extends State<GettingStarted> {
                           style: TextStyle(
                               fontSize: 16,
                               fontFamily: 'Sfpro',
-                              color: Theme.of(context).primaryColor,
+                              color: Color(0xff41436a),
                               decoration: TextDecoration.underline,
                               fontWeight: FontWeight.bold),
                         ),

@@ -49,7 +49,7 @@ class _FirstLandingState extends State<FirstLanding> {
       height: 8.0,
       width: isActive ? 24.0 : 16.0,
       decoration: BoxDecoration(
-        color: isActive ? Colors.cyanAccent : Colors.grey,
+        color: isActive ? const Color(0xff78A6C8) : Colors.grey,
         borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),
     );
@@ -78,7 +78,7 @@ class _FirstLandingState extends State<FirstLanding> {
                   "Créer votre compte",
                   style: TextStyle(
                       fontSize: 25,
-                      color: Colors.cyanAccent,
+                      color: Color(0xff78A6C8),
                       fontFamily: 'Sfpro',
                       fontWeight: FontWeight.bold),
                 ),
@@ -324,6 +324,9 @@ class _FirstLandingState extends State<FirstLanding> {
                                       width: MediaQuery.of(context).size.width,
                                       height: 40,
                                       child: ElevatedButton(
+                                        style: ButtonStyle(
+                                          backgroundColor: MaterialStateProperty.all( const Color(0xff78A6C8))
+                                        ),
                                           onPressed: () async {
                                             if (!_formkey.currentState!
                                                     .validate() ==
@@ -388,7 +391,7 @@ class _FirstLandingState extends State<FirstLanding> {
                                 child: const Text("Vous avez déja un compte?",
                                     style: TextStyle(
                                         fontSize: 15,
-                                        color: Colors.cyanAccent,
+                                        color: Color(0xff78A6C8),
                                         fontWeight: FontWeight.bold)),
                               ),
                             )
@@ -422,13 +425,13 @@ class _FirstLandingState extends State<FirstLanding> {
                                 'Suivant',
                                 style: TextStyle(
                                   fontFamily: 'Sfpro',
-                                  color: Colors.cyanAccent,
+                                  color: Color(0xff78A6C8),
                                   fontSize: 18.0,
                                 ),
                               ),
                               Icon(
                                 Icons.arrow_forward_ios_rounded,
-                                color: Colors.cyanAccent,
+                                color: Color(0xff78A6C8),
                                 size: 20.0,
                               ),
                             ],

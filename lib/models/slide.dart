@@ -13,8 +13,8 @@ class Slide {
 final slideList = [
   Slide(
     imageUrl: 'assets/images/logo_gas.png',
-    title: 'A Cool Way to Get Started',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dapibus tincidunt bibendum. Maecenas eu viverra orci. Duis diam leo, porta at justo vitae, euismod aliquam nulla.',
+    title: 'Limiter le Danger',
+    description: 'Notre but est de limiter le danger des fuites de gaz dans les domiciles',
   ),
   Slide(
     imageUrl: 'assets/images/logo_gas.png',

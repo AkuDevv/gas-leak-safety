@@ -21,13 +21,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xff78A6C8),
         title: const Text("Reinitialiser le mot de passe",style: TextStyle(
           fontFamily: 'Sfpro'
         ),),
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(50),
         child: Form(
           key: _formkey,
           child: ListView(
@@ -37,19 +38,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               SizedBox(
                 width: 120,
                 height: 120,
-                child: Image.asset("assets/images/logo_gas.png"),
-              ),
-
-              const Center(
-                child: Text(
-                  "Entrez votre adresse email!",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.cyanAccent,
-                    fontFamily: 'Sfpro',
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
+                child: Image.asset("assets/images/forgot.png"),
               ),
 
               const SizedBox(height: 20,),
