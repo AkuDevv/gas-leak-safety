@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                         Image(image: AssetImage('assets/images/logo.png'),width: 180,height: 160,),
-                        Text('Solution inovante \net affordable ',style: TextStyle(fontSize: 20,fontFamily: 'Sfpro', 
+                        Text('Solution innovante \net affordable ',style: TextStyle(fontSize: 20,fontFamily: 'Sfpro', 
                         fontWeight: FontWeight.bold,color: Theme.of(context).primaryColor),
                         ),
                        

@@ -84,7 +84,7 @@ class _FirstLandingState extends State<FirstLanding> {
                 ),
               ),
               Container(
-                height: 350.0,
+                height: 400.0,
                 child: Form(
                   key: _formkey,
                   child: PageView(
