@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gas_leak_safety/screens/signIn.dart';
 import 'package:gas_leak_safety/screens/started.dart';
 import 'package:gas_leak_safety/screens/verify_email.dart';
+import 'package:gas_leak_safety/services/services_locator.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -11,7 +12,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MaterialApp(
+  setupLocator();
+  runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: GettingStarted(),
   ));
