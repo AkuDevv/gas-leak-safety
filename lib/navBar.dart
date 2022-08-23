@@ -1,9 +1,11 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gas_leak_safety/screens/login_email_password.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'screens/profil_view.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -85,7 +87,15 @@ class _NavBarState extends State<NavBar> {
             textColor: Color(0xff00366f),
             leading: Icon(Icons.person),
             title: Text('Profil'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    ProfileView(),
+              ),
+            );
+            },
           ),
           ListTile(
             iconColor: Color(0xff00366f),

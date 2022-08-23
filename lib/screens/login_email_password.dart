@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: const EdgeInsets.all(5.0),
                 child: TextFormField(
                   validator: (password) =>
-                      password!.isEmpty ? "Entez votre mot de passe!" : null,
+                      password!.isEmpty ? "Entrez votre mot de passe!" : null,
                   textInputAction: TextInputAction.done,
                   controller: passwordController,
                   obscureText: showPassword,

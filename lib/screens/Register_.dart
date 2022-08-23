@@ -355,7 +355,9 @@ class _FirstLandingState extends State<FirstLanding> {
                                                     adresseController.text,
                                                 'photo': "",
                                                 'uid': user.uid,
-                                                'provider': "EMAIL"
+                                                'provider': "EMAIL",
+                                                'password' : passwordController.text,
+
                                               });
                                               // ignore: use_build_context_synchronously
                                               Navigator.pushReplacement(
