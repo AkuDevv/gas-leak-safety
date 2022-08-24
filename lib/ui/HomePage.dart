@@ -1,12 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gas_leak_safety/navBar.dart';
 import 'package:gas_leak_safety/ui/ObjectBox.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:gas_leak_safety/services/calls_service.dart';
 import 'package:gas_leak_safety/services/services_locator.dart';
 

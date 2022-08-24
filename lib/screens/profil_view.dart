@@ -1,15 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gas_leak_safety/screens/changePassword.dart';
-import 'package:gas_leak_safety/screens/editPassword.dart';
-import 'package:gas_leak_safety/screens/signIn.dart';
-import 'package:gas_leak_safety/screens/verify_email.dart';
-import 'package:gas_leak_safety/services/auth_service.dart';
+import 'package:gas_leak_safety/ui/HomePage.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -65,23 +60,41 @@ class _ProfileViewState extends State<ProfileView> {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     
     return Scaffold(
-     appBar : AppBar(
-      title: Text("Profil",style: TextStyle(fontFamily: 'Sfpro',fontSize: 20,
-      fontWeight: FontWeight.bold),)
-              ),
+   
       body: Container(
+
         height: MediaQuery.of(context).size.height,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+             Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: const [Color(0xff00366f), Color(0xffd41d35)],
+                        stops: const [0.2, 0.9])),
+                child: AppBar(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    title: Text(
+                      "Profil",
+                      style: TextStyle(
+                          fontFamily: 'Sfpro',
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    leading: IconButton(icon:Icon(Icons.arrow_back),
+            onPressed:() => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePage()))
+      ,),),
+              ),
+           SizedBox(height: 18,),
             Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height*0.16,
+                child: Container(
+                width: MediaQuery.of(context).size.width*0.5,
+                height: MediaQuery.of(context).size.height*0.10,
                 child: Image.asset("assets/images/logo.png"),
               ),
             ),
-            
+            SizedBox(height: 20,),
             Container(
               height: MediaQuery.of(context).size.height*0.70,
               child: Form(
@@ -223,14 +236,7 @@ class _ProfileViewState extends State<ProfileView> {
                                               true) {
                                             return;
                                           }
-                                         /* setState(() {
-                                            loading = true;
-                                          });*/
-                                         /* User? user = await AuthService()
-                                              .register(
-                                                  emailController.text,
-                                                  passwordController.text,
-                                                  context);*/
+                                         
                                           if (user != null) {
                                             CollectionReference users =
                                                 firebaseFirestore
